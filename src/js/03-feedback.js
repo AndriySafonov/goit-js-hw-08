@@ -18,16 +18,15 @@ const refs = {
   textarea: document.querySelector('.feedback-form textarea'),
 };
 refs.form.addEventListener('submit', onFormSubmit);
-refs.textarea.addEventListener('input', throttle(onTextareaInput, 500));
-refs.form.addEventListener('input', e => {
-  // console.log(e.target.name);
-  // console.log(e.target.value);
 
- JSON.stringify(formData)[e.target.name] = e.target.value;
-  console.log(formData);
+refs.form.addEventListener('input', e => {
+
+ formData[e.target.name] = e.target.value;
+ localStorage.setItem(STORAGE_KEY, JSON.stringify(formData))
+ 
 });
 
-populateTextarea();
+// populateTextarea();
 
 // - Останавливаем поведение по умолчанию
 // - Убираем сообщение из хранилища
