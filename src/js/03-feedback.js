@@ -7,18 +7,19 @@
 
 // const parseData = JSON.parse(savedData);
 // console.log('parseData', parseData);
-import throttle from 'lodash.throttle'
+import throttle from 'lodash.throttle';
 
-const STORAGE_KEY = "feedback-form-state"
+const STORAGE_KEY = 'feedback-form-state';
 
 const refs = {
   form: document.querySelector('.feedback-form'),
-  input: document.querySelector('.feedback-form input'),
   textarea: document.querySelector('.feedback-form textarea'),
 };
 refs.form.addEventListener('submit', onFormSubmit);
-refs.input.addEventListener('input', throttle(onInput, 500))
 refs.textarea.addEventListener('input', throttle(onTextareaInput, 500));
+refs.input.addEventListener('input', e => {
+  console.log(e.target);
+});
 
 populateTextarea();
 
@@ -31,23 +32,23 @@ function onFormSubmit(evt) {
 
   console.log('sell form');
   evt.currentTarget.reset();
-  localStorage.removeItem(STORAGE_KEY)
+  localStorage.removeItem(STORAGE_KEY);
 }
 
 // - Получаем значение поля
 // - Сохраняем его в хранилище
 // - Можно добавить throttle
 
-function onInput(evt) {
-  const email = evt.target.value;
-  
-  localStorage.setItem(STORAGE_KEY, email);
-  console.log('email', email);
-}
+// function onInput(evt) {
+//   const email = evt.target.value;
+
+//   localStorage.setItem(STORAGE_KEY, email);
+//   console.log('email', email);
+// }
 
 function onTextareaInput(evt) {
   const message = evt.target.value;
-  
+
   localStorage.setItem(STORAGE_KEY, message);
   console.log('message', message);
 }
@@ -60,6 +61,5 @@ function populateTextarea() {
   if (savedMessage) {
     console.log(savedMessage);
     refs.textarea.value = savedMessage;
-    refs.input.value = savedMessage;
   }
 }
