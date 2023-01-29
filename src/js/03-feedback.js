@@ -11,14 +11,20 @@ import throttle from 'lodash.throttle';
 
 const STORAGE_KEY = 'feedback-form-state';
 
+const formData = {};
+
 const refs = {
   form: document.querySelector('.feedback-form'),
   textarea: document.querySelector('.feedback-form textarea'),
 };
 refs.form.addEventListener('submit', onFormSubmit);
 refs.textarea.addEventListener('input', throttle(onTextareaInput, 500));
-refs.input.addEventListener('input', e => {
-  console.log(e.target);
+refs.form.addEventListener('input', e => {
+  // console.log(e.target.name);
+  // console.log(e.target.value);
+
+ JSON.stringify(formData)[e.target.name] = e.target.value;
+  console.log(formData);
 });
 
 populateTextarea();
