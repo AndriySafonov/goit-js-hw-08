@@ -34,7 +34,6 @@ function onFormSubmit(evt) {
   localStorage.removeItem(STORAGE_KEY);
 }
 
-
 function updateForm() {
   if (localStorage.getItem(STORAGE_KEY) === null) {
     return;
