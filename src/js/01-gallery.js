@@ -2,7 +2,7 @@
 import { galleryItems } from './gallery-items';
 // Change code below this line
 import SimpleLightbox from "simplelightbox";
-import 'simpleLightbox/dist/simple-lightbox.min.css';
+import 'simplelightbox/dist/simple-lightbox.min.css';
 
 const gallery = document.querySelector(".gallery");
 const renderGalleryItems = (pictures) =>
